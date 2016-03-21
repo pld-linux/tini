@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static		# don't build static version
+
 Summary:	A tiny but valid init process for containers
 Name:		tini
 Version:	0.9.0
@@ -16,6 +20,13 @@ Tini is the simplest init you could think of.
 All Tini does is spawn a single child (Tini is meant to be run in a
 container), and wait for it to exit all the while reaping zombies and
 performing signal forwarding.
+
+%package static
+Summary:	Statically linked tini
+Group:		Base
+
+%description static
+Statically linked tini.
 
 %prep
 %setup -q
@@ -38,4 +49,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE
 %attr(755,root,root) %{_bindir}/tini
+
+%files static
+%defattr(644,root,root,755)
+%doc LICENSE
 %attr(755,root,root) %{_bindir}/tini-static
