@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	static		# don't build static version
+%bcond_without	tests		# Smoke tests (actual tests need Docker to run)
 
 Summary:	A tiny but valid init process for containers
 Name:		tini
@@ -45,6 +46,33 @@ install -d build
 cd build
 %cmake ..
 %{__make}
+
+%if %{with tests}
+# Smoke tests
+for tini in ./tini %{?with_static:./tini-static}; do
+	echo "Smoke test for $tini"
+	$tini -h
+
+	echo "Testing $tini with: true"
+	$tini -vvv true
+
+	echo "Testing $tini with: false"
+	if $tini -vvv false; then
+		exit 1
+	fi
+
+	# Test stdin / stdout are handed over to child
+	echo "Testing pipe"
+	echo "exit 0" | $tini -vvv sh
+	if [ ! "$?" -eq "0" ]; then
+		echo "Pipe test failed"
+		exit 1
+	fi
+
+#	echo "Checking hardening on $tini"
+#	hardening-check --nopie --nostackprotector --nobindnow $tini
+done
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
