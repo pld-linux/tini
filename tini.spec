@@ -12,6 +12,7 @@ Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.
 # Source0-md5:	efd014cf45babe76415c4d6caee643d8
 URL:		https://github.com/krallin/tini
 BuildRequires:	cmake
+%{?with_static:BuildRequires:	glibc-static}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
