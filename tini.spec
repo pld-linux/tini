@@ -6,7 +6,7 @@
 Summary:	A tiny but valid init process for containers
 Name:		tini
 Version:	0.9.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Base
 Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -15,6 +15,8 @@ URL:		https://github.com/krallin/tini
 BuildRequires:	cmake
 %{?with_static:BuildRequires:	glibc-static}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_sbindir	/sbin
 
 %description
 Tini is the simplest init you could think of.
@@ -79,15 +81,18 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_sbindir}
+mv $RPM_BUILD_ROOT{%{_bindir}/*,%{_sbindir}}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc LICENSE
-%attr(755,root,root) %{_bindir}/tini
+%attr(755,root,root) %{_sbindir}/tini
 
 %files static
 %defattr(644,root,root,755)
 %doc LICENSE
-%attr(755,root,root) %{_bindir}/tini-static
+%attr(755,root,root) %{_sbindir}/tini-static
