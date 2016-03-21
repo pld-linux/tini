@@ -26,7 +26,15 @@ Summary:	Statically linked tini
 Group:		Base
 
 %description static
-Statically linked tini.
+Tini is the simplest init you could think of.
+
+All Tini does is spawn a single child (Tini is meant to be run in a
+container), and wait for it to exit all the while reaping zombies and
+performing signal forwarding.
+
+This package contains statically linked tini. The dynamically linked
+tini uses only libc, so using statically linked program makes only
+sense if you do not use libc in your container.
 
 %prep
 %setup -q
