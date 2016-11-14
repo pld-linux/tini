@@ -16,6 +16,7 @@ Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.
 URL:		https://github.com/krallin/tini
 BuildRequires:	cmake
 %{?with_static:BuildRequires:	glibc-static}
+BuildRequires:	xxd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
