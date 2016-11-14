@@ -1,3 +1,5 @@
+# TODO
+# - build static with musl (800kb static binary vs 19k dynamic)
 #
 # Conditional build:
 %bcond_without	static		# don't build static version
@@ -5,12 +7,12 @@
 
 Summary:	A tiny but valid init process for containers
 Name:		tini
-Version:	0.9.0
-Release:	2
+Version:	0.13.0
+Release:	1
 License:	MIT
 Group:		Base
 Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	efd014cf45babe76415c4d6caee643d8
+# Source0-md5:	c29541112a242c53c82bb6b1213f288f
 URL:		https://github.com/krallin/tini
 BuildRequires:	cmake
 %{?with_static:BuildRequires:	glibc-static}
