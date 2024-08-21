@@ -7,18 +7,17 @@
 
 Summary:	A tiny but valid init process for containers
 Name:		tini
-Version:	0.13.0
+Version:	0.19.0
 Release:	1
 License:	MIT
 Group:		Base
 Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	c29541112a242c53c82bb6b1213f288f
+# Source0-md5:	72935bca9232313409a052833068fb1d
 URL:		https://github.com/krallin/tini
 BuildRequires:	cmake >= 2.8.0
 %{?with_static:BuildRequires:	glibc-static}
 BuildRequires:	linux-libc-headers >= 7:3.4
 BuildRequires:	rpmbuild(macros) >= 1.605
-BuildRequires:	xxd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
