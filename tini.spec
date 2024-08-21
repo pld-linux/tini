@@ -14,9 +14,10 @@ Group:		Base
 Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	c29541112a242c53c82bb6b1213f288f
 URL:		https://github.com/krallin/tini
-BuildRequires:	cmake
+BuildRequires:	cmake >= 2.8.0
 %{?with_static:BuildRequires:	glibc-static}
 BuildRequires:	linux-libc-headers >= 7:3.4
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	xxd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
