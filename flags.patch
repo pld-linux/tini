@@ -1,0 +1,13 @@
+--- tini-0.19.0/CMakeLists.txt.orig	2020-04-19 19:33:22.000000000 +0200
++++ tini-0.19.0/CMakeLists.txt	2024-08-23 15:40:32.698990873 +0200
+@@ -53,8 +53,8 @@
+ 	add_definitions(-D_FORTIFY_SOURCE=2)
+ endif()
+ 
+-set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99 -Werror -Wextra -Wall -pedantic-errors -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat")
+-set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-s")
++set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99 -Werror -Wextra -Wall -pedantic-errors -Wformat")
++set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bsymbolic-functions -Wl,-z,relro")
+ 
+ # Build
+ 

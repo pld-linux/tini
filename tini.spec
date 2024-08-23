@@ -13,6 +13,7 @@ License:	MIT
 Group:		Base
 Source0:	https://github.com/krallin/tini/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	72935bca9232313409a052833068fb1d
+Patch0:		flags.patch
 URL:		https://github.com/krallin/tini
 BuildRequires:	cmake >= 2.8.0
 %{?with_static:BuildRequires:	glibc-static}
@@ -46,6 +47,7 @@ sense if you do not use libc in your container.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 install -d build
